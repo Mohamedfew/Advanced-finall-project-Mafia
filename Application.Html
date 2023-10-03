@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <style>
+
+/* body{
+  height: 1000vh;
+} */
+.card .btn{
+  padding: 0;
+}
+
+.card{
+  margin-bottom: 30px;
+  border:none
+}
+
+#log-out:hover{
+  background-color: red;
+  color: white !important;
+}
+
+.alert-success{
+  position: absolute;
+    top: 560px;
+    right: -212%;
+}
+.alert-danger{
+  position: absolute;
+    top: 560px;
+    right: -212%;
+}
+
+.main_add{
+  position: relative;
+}
+.main_add #svg {
+  position: fixed;
+    top: 88%;
+    right: 11px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.card-header{
+  display: contents;
+}
+
+    </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+</head>
+<body>
+
+  
+  <!-- model -->
+    <!-- login -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">User name</label>
+            <input type="text" class="form-control" id="User" value="yarob99">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label" >password</label>
+            <input type="password" class="form-control" value="123456" id="password">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="loginclick()">login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end login -->
+
+<!-- start alert  -->
+<div class="container success-alert position-relative">
+ 
+  <div id="liveAlertPlaceholder" class="fade show " style="position:fixed; z-index: 999; width:30%;"></div>
+</div>
+<!-- end alert succ -->
+
+
+
+
+<!-- satrt register -->
+<div class="modal fade" id="exampleModal-register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">register-new: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-5">
+            <label for="recipient-name" class="col-form-label">User name</label>
+            <input type="text" class="form-control" id="User-register" >
+          </div>
+          <div class="mb-5">
+            <label for="recipient-name" class="col-form-label">name</label>
+            <input type="text" class="form-control" id="name-register" >
+          </div>
+          <div class="mb-5">
+            <label for="message-text" class="col-form-label" >password</label>
+            <input type="password" class="form-control"  id="password-register">
+          </div>
+          <div class="mb-5">
+            <label for="message-text" class="col-form-label" >img</label>
+            <input type="file" class="form-control"  id="file-register">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="registerlogin()">login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end register -->
+
+
+
+<!-- satrt add posts  -->
+<div class="modal fade" id="exampleModal-posts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Creat-new-posts: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-5">
+            <label for="recipient-name" class="col-form-label">title</label>
+            <input type="text" class="form-control" id="titlepost" >
+          </div>
+          <div class="mb-5">
+            <textarea name="" id="post-body" style="width:100%; resize: none; border-radius: 10px; "></textarea>
+          </div>
+          <div class="mb-5">
+            <label for="message-text" class="col-form-label" >img</label>
+            <input type="file" class="form-control"  id="img-posts">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="creatposts()">login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end register -->
+
+    <!-- end modil -->
+  <div class="container">
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <a class="navbar-brand" href="#">tarmez</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">protfolio</a>
+        </li>
+        </ul>
+        <div class="data-response d-flex align-items-center">
+          
+        </div>
+        <div class="button d-flex" >
+          <button type="button" id="login-input"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" class="btn btn-outline-success">Login</button>
+          <button type="button" id="register" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#exampleModal-register">register</button>
+          <button  class="btn btn-outline-success" id="log-out" style="display: none;">log out</button>
+      <div>
+      </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- posts  -->
+   
+<div class="container col-12">
+  <div class="card ">
+    <div class="card-header">
+   
+  </div>
+
+
+</div>
+<!-- add post button -->
+
+
+<div class="main_add"  style="display:none; cursor: pointer;" >
+  <button  id="svg"  data-bs-toggle="modal" data-bs-target="#exampleModal-posts">
+
+    <i class="fa-solid fa-circle-plus" style="color: rgb(34, 109, 250); font-size: 50px;" ></i>
+
+  </button>
+
+</div>
+
+
+
+<script src="/js/bootstrap.bundle.js"></script>
+<script src="/js/all.min.js"></script>
+<script src="/social.js"></script>
+<script src="/mainlogic.js"></script>
+</body>
+<script>
+
+  
+
+
+</script>
+</html>
